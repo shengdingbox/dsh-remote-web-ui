@@ -1,15 +1,18 @@
 # The standalone workspace's own bundle layer.
 #
-# A path install of THIS repository root must declare `dsh.bundle.patch`,
-# otherwise DSH refuses it as `not-a-bundle` ("this package declares no
-# bundle"). The row below therefore mounts the package through the ROOT
-# identity (`dsh-remote-web-ui-standalone`), whose `main`/`exports` forward to
-# `packages/dsh-remote-web-ui/lib/*` — so a root install loads the code in this
-# checkout, not the published `@shengdingbot/dsh-remote-web-ui` from the registry.
+# Needed because DSH judges installability from `dsh.bundle.patch` in the
+# package.json at the path or git ref you install: a repository root without
+# it is refused as `not-a-bundle` ("this package declares no bundle"). The row
+# below mounts the package through the ROOT identity, whose `main`/`exports`
+# forward to `packages/dsh-remote-web-ui/lib/*`, so a root install (path link
+# or `github:` ref) runs the code in this checkout.
 #
-# The row id is deliberately distinct from the package's own `remote-web-ui`
-# row: a profile that still carries the published package must not end up with
-# two bundles claiming one row.
+# The row id matches the package's own `remote-web-ui` row on purpose: a
+# profile's patch layer addresses config by id, so both install paths must
+# present the same row or the user's settings silently stop applying. The cost
+# is that one profile may carry only ONE of the two — the root entry here or
+# `packages/dsh-remote-web-ui` — never both, since two bundles claiming one row
+# is a conflict.
 - insert:
-    - id: remote-web-ui-standalone
+    - id: remote-web-ui
       name: '@shengdingbot/dsh-remote-web-ui-standalone'
