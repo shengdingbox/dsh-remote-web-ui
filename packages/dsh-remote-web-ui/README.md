@@ -2,14 +2,14 @@
 
 English | [中文](README.zh.md)
 
-> **Deprecation notice**: `@linxin666/dsh-remote-web-ui` is deprecated in favor of [@linxin666/dsh-remote-bridge](../dsh-remote-bridge/README.md). It has been retired from the `@linxin666/dsh-web-all` aggregate bundle (where legacy profile rows mount silently as no-ops via tombstone exports and the `retiredPlugins` registry) and will be removed in the next release. Standalone installation (`dsh plugin --profile <name> add @linxin666/dsh-remote-web-ui`) remains functional during this transitional period. Browser-based remote control has been replaced by the native phone app (@linxin666/dsh-remote-bridge), and this package no longer provides remote access capabilities.
+> **Origin and maintenance**: this package is the standalone branch of the upstream `@linxin666/dsh-remote-web-ui` (originally part of the `dsh-web` monorepo) and is published as `@shengdingbot/dsh-remote-web-ui`. The upstream package was retired from the `@linxin666/dsh-web-all` aggregate bundle at v0.4.13 and is no longer maintained, its browser remote control having been replaced by the native phone app (@linxin666/dsh-remote-bridge). This branch keeps the full implementation alive; the two share one relay identity per profile, so **never enable both**.
 >
 > - **Capabilities migrated to `@linxin666/dsh-remote-bridge`**: Ingress stack (relay registry identity, lease control claim/release, quick and named tunnel connectors, Durable Object relay bridge connector, cloudflared lifecycle management and orphan process reaping, Cloudflare named tunnel ingress sync, LAN forwarder, host bind capability probe, and host firewall management).
 > - **Capabilities retired with this package**: Browser-facing remote web control (pairing cookie gate, `/api/pair` endpoints, `/remote` proxy channel, and the mobile browser touch adaptation layer).
 > - **Known coexistence risk**: if installed in the same profile alongside `@linxin666/dsh-remote-bridge`, do not enable relay on both plugins simultaneously (both share the same on-disk relay identity per profile; running both causes Durable Object connection contention, and mounting the bridge with `relay=false` withdraws the shared registration row and releases the lease).
 
 <p align="center">
-  <img src="https://img.shields.io/npm/v/@linxin666/dsh-remote-web-ui?style=flat-square" alt="Version">
+  <img src="https://img.shields.io/npm/v/@shengdingbot/dsh-remote-web-ui?style=flat-square" alt="Version">
   &nbsp;
   <img src="https://img.shields.io/badge/DSH-%3E%3D0.2.1--rc.3-4c6ef5?style=flat-square&amp;labelColor=454a54" alt="DSH">
   &nbsp;
@@ -63,7 +63,7 @@ Install the family aggregate package `@linxin666/dsh-web-all` (all plugins and s
 
 ```sh
 # Recommended: install directly from npm
-dsh plugin --profile web add @linxin666/dsh-remote-web-ui@latest
+dsh plugin --profile web add @shengdingbot/dsh-remote-web-ui@latest
 
 # Or from the repository (development loop)
 git clone https://github.com/zhu1090093659/dsh-web.git
@@ -153,9 +153,9 @@ Work from this repository (no sibling checkout needed):
 cd dsh-web
 export NPM_TOKEN='<token>'   # only if private @deepseek-ai auth is still required
 pnpm install
-pnpm --filter @linxin666/dsh-remote-web-ui run build
-pnpm --filter @linxin666/dsh-remote-web-ui test
-pnpm --filter @linxin666/dsh-remote-web-ui run typecheck
+pnpm --filter @shengdingbot/dsh-remote-web-ui run build
+pnpm --filter @shengdingbot/dsh-remote-web-ui test
+pnpm --filter @shengdingbot/dsh-remote-web-ui run typecheck
 ```
 
 The peer APIs come from the official NPM SDK: every `@deepseek-ai/*` package used here is declared in devDependencies (0.2.1-rc.3 cohort), and TypeScript/Vitest resolve types straight from node_modules — no DSH source checkout is required. The consumer-side `prepare` build (`tsdown.prepare.config.ts`) transpiles without type checking, so git installs work without any harness checkout either.

@@ -194,7 +194,7 @@ export function apply(ctx: ClientContext): void {
 
   // Anonymous install heartbeat (docs/telemetry.md): one beat per browser per
   // UTC day, package name only, silent failure.
-  reportDailyHeartbeat([{ name: '@linxin666/dsh-remote-web-ui' }])
+  reportDailyHeartbeat([{ name: '@shengdingbot/dsh-remote-web-ui' }])
 
   ctx.effect(() => {
     try {
@@ -311,7 +311,7 @@ export function apply(ctx: ClientContext): void {
   // is not installed).
   const remoteSettings = new RemoteSettingsCardController(settingsForm)
   installPluginCard(ctx, {
-    bundle: '@linxin666/dsh-remote-web-ui',
+    bundle: '@shengdingbot/dsh-remote-web-ui',
     id: 'remote-web-ui',
     order: 90,
     locale: NS,

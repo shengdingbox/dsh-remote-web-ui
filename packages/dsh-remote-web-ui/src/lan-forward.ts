@@ -28,7 +28,7 @@
  * Nothing here writes a file: the forwarder is runtime state, so a network
  * change needs no profile edit and no restart.
  *
- * @module @linxin666/dsh-remote-web-ui/lan-forward
+ * @module @shengdingbot/dsh-remote-web-ui/lan-forward
  */
 
 import { createServer, request as httpRequest, type ClientRequest, type IncomingMessage, type Server, type ServerResponse } from 'node:http'

@@ -21,7 +21,7 @@
  * IP address" and delivers the response), which is exactly the shape every LAN
  * candidate has.
  *
- * @module @linxin666/dsh-remote-web-ui/lan-source
+ * @module @shengdingbot/dsh-remote-web-ui/lan-source
  */
 
 /** sessionStorage key holding this session's source decision. */

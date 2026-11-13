@@ -17,7 +17,7 @@
  * grant is worthless after its first use and a replayed one can never resolve,
  * and only a first use inside the TTL yields a device.
  *
- * @module @linxin666/dsh-remote-web-ui/pair-grant
+ * @module @shengdingbot/dsh-remote-web-ui/pair-grant
  */
 
 import { randomBytes } from 'node:crypto'

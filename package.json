@@ -1,10 +1,10 @@
 {
-  "name": "dsh-remote-web-ui-standalone",
+  "name": "@shengdingbot/dsh-remote-web-ui-standalone",
   "private": true,
   "version": "0.4.13",
   "type": "module",
   "packageManager": "pnpm@11.7.0",
-  "description": "Standalone workspace for @linxin666/dsh-remote-web-ui, split out of the dsh-web monorepo",
+  "description": "Standalone workspace for @shengdingbot/dsh-remote-web-ui, split out of the dsh-web monorepo",
   "main": "./packages/dsh-remote-web-ui/lib/index.js",
   "types": "./packages/dsh-remote-web-ui/lib/types/index.d.ts",
   "exports": {
@@ -25,9 +25,26 @@
     "clean": "node -e \"require('fs').rmSync('packages/dsh-remote-web-ui/lib',{recursive:true,force:true})\""
   },
   "devDependencies": {
+    "anser": "^2.3.5",
+    "diff": "^9.0.0",
+    "immer": "^11.2.10",
+    "katex": "^0.19.1",
     "lightningcss": "^1.30.2",
+    "mdast-util-from-markdown": "^2.1.0",
+    "mdast-util-gfm": "^3.1.0",
+    "mdast-util-math": "^3.0.0",
+    "micromark-core-commonmark": "^2.0.4",
+    "micromark-extension-gfm": "^3.0.0",
+    "micromark-extension-math": "^3.1.0",
+    "micromark-factory-space": "^2.1.0",
+    "micromark-util-character": "^2.1.1",
+    "micromark-util-classify-character": "^2.0.1",
+    "micromark-util-sanitize-uri": "^2.0.1",
+    "micromark-util-symbol": "^2.0.1",
+    "shiki": "^4.6.0",
     "simple-icons": "^13.21.0",
-    "tsdown": "^0.22.2"
+    "tsdown": "^0.22.2",
+    "zustand": "^5.1.0"
   },
   "dsh": {
     "engines": {

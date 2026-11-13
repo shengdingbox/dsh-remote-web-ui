@@ -45,7 +45,7 @@ const Card = (): null => null
 /** One card contribution; cases override the fields they exercise. */
 function seat(overrides: Record<string, unknown> = {}): never {
   return {
-    bundle: '@linxin666/dsh-remote-web-ui',
+    bundle: '@shengdingbot/dsh-remote-web-ui',
     id: 'remote-web-ui',
     order: 90,
     locale: 'remote',
@@ -72,7 +72,7 @@ describe('installPluginCard seat selection', () => {
     const harness = context()
     installPluginCard(harness.ctx as never, seat())
     expect(harness.registrations).toHaveLength(1)
-    expect(harness.registrations[0]).toMatchObject({ name: OFFICIAL_PLUGIN_CARD_SEAT, key: '@linxin666/dsh-remote-web-ui' })
+    expect(harness.registrations[0]).toMatchObject({ name: OFFICIAL_PLUGIN_CARD_SEAT, key: '@shengdingbot/dsh-remote-web-ui' })
     expect(harness.registrations[0]).not.toHaveProperty('id')
   })
 

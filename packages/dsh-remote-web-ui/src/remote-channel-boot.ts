@@ -27,7 +27,7 @@
  * transport otherwise runs inside a Web Worker whose own globals the
  * main-thread rewrite cannot reach (issue #1580). The script self-skips on
  * loopback origins and never throws.
- * @module @linxin666/dsh-remote-web-ui/remote-channel-boot
+ * @module @shengdingbot/dsh-remote-web-ui/remote-channel-boot
  */
 
 import { REMOTE_CHANNEL_BOOT_GLOBAL, REMOTE_CHANNEL_RULES, type RemoteChannelRules } from './remote-channel-rules.ts'

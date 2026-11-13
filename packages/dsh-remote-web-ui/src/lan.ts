@@ -17,7 +17,7 @@
  * keeps everything else — RFC1918, ULA-side IPv4 and a routable public literal
  * (a VPS whose NIC is its only reachable base must stay advertisable).
  *
- * @module @linxin666/dsh-remote-web-ui/lan
+ * @module @shengdingbot/dsh-remote-web-ui/lan
  */
 
 import { networkInterfaces } from 'node:os'

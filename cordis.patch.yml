@@ -5,11 +5,11 @@
 # bundle"). The row below therefore mounts the package through the ROOT
 # identity (`dsh-remote-web-ui-standalone`), whose `main`/`exports` forward to
 # `packages/dsh-remote-web-ui/lib/*` — so a root install loads the code in this
-# checkout, not the published `@linxin666/dsh-remote-web-ui` from the registry.
+# checkout, not the published `@shengdingbot/dsh-remote-web-ui` from the registry.
 #
 # The row id is deliberately distinct from the package's own `remote-web-ui`
 # row: a profile that still carries the published package must not end up with
 # two bundles claiming one row.
 - insert:
     - id: remote-web-ui-standalone
-      name: dsh-remote-web-ui-standalone
+      name: '@shengdingbot/dsh-remote-web-ui-standalone'

@@ -1,7 +1,7 @@
 # dsh-remote-web-ui · 独立分支
 
 从 [`zhu1090093659/dsh-web`](https://github.com/zhu1090093659/dsh-web) 单体仓中分离出来的
-`@linxin666/dsh-remote-web-ui` —— DeepSeek Harness (DSH) Web GUI 的**扫码配对浏览器远程控制**插件。
+`@shengdingbot/dsh-remote-web-ui` —— DeepSeek Harness (DSH) Web GUI 的**扫码配对浏览器远程控制**插件。
 
 > **上游状态**：该包在上游已于 `v0.4.13` 从聚合包 `@linxin666/dsh-web-all` 中退役，
 > 由原生手机 App 方案 `@linxin666/dsh-remote-bridge` 承接，并计划在后续版本正式删除。
@@ -11,7 +11,7 @@
 
 | 项目 | 内容 |
 |---|---|
-| 包名 | `@linxin666/dsh-remote-web-ui` |
+| 包名 | `@shengdingbot/dsh-remote-web-ui` |
 | 源位置 | `dsh-web` 仓 → `packages/dsh-remote-web-ui` |
 | 源版本 | `v0.4.13`（tag `v0.4.13`） |
 | 本仓路径 | `packages/dsh-remote-web-ui`（保持原路径；仅 1 处源码修复，见下文） |
@@ -51,12 +51,16 @@ SDK 类型全部从 npm 上的 `@deepseek-ai/*` 解析，**不依赖宿主源码
 1. **`shared/` 被复制进本仓**。上游它位于单体仓根部、被多个包共享；这里只搬运被本包
    `tsdown` 配置实际引用的两个文件，层级不变，因此 `../../shared/...` 的相对导入与
    `new URL('..', import.meta.url)` 的仓库根假设都保持有效。
-2. **根 `package.json` 增加 `simple-icons@^13.21.0` 开发依赖**。上游 SDK 的
-   `@deepseek-ai/dsh-client-ui-primitives` 在产物里以具名导入引用 `simple-icons`
-   （`siGoogle` 等），却未在自己的 `dependencies` 里声明它——在单体仓里靠提升侥幸可用，
-   分离后会变成 `Cannot find package 'simple-icons'`，导致 5 个测试文件失败。
-   这里显式补在根，属于**依赖声明补齐**，不是源码修改。版本选 `13.x` 是因为
-   `simple-icons` 从 14 起取消了逐图标具名导出，14/15 无法满足该导入形式。
+2. **根 `package.json` 补齐 SDK 未声明的传递依赖**。上游 `@deepseek-ai/*` 预览包在产物里
+   直接 import 了一批包，却不在自己的 `dependencies` 里声明——这些包在单体仓里靠提升侥幸可用，
+   分离后逐个变成 `Cannot find package 'x'`：
+   - `@deepseek-ai/dsh-client-ui-primitives` → `simple-icons`（`siGoogle` 等具名导入）、
+     `katex`、`shiki`、`anser`、`diff`、`mdast-*` 与 `micromark-*` 系列；
+   - `@deepseek-ai/dsh-client-store` → `zustand`（`/vanilla`、`/middleware`、`/shallow`）、`immer`。
+
+   这里全部显式补在根，属于**依赖声明补齐**，不是源码修改。`simple-icons` 固定 `13.x`，
+   因为从 14 起取消了逐图标具名导出，14/15 无法满足该导入形式。
+   补齐前 5 个测试文件因 `Cannot find package`、`Failed to resolve import` 直接加载失败。
 3. **新增 `pnpm-lock.yaml`**。上游的锁文件覆盖全仓数百个包，不适用于单包工作区；
    本仓的锁文件由本工作区独立安装生成。
 4. **`packages/dsh-remote-web-ui/lib/` 随仓提交**。上游 `.gitignore` 把 `lib/` 排除，
@@ -143,8 +147,8 @@ installProblemNotBundle: 这个包没有声明组合包，无法作为插件安�
 
 | 填给插件管理器的路径 | 得到的组合包名 | patch 行 id | 加载的代码 |
 |---|---|---|---|
-| `D:\...\dsh-remote-web-ui`（仓库根） | `dsh-remote-web-ui-standalone` | `remote-web-ui-standalone` | 本仓 `packages/dsh-remote-web-ui/lib/*` |
-| `D:\...\dsh-remote-web-ui\packages\dsh-remote-web-ui` | `@linxin666/dsh-remote-web-ui` | `remote-web-ui` | 同一份 `lib/*` |
+| `D:\...\dsh-remote-web-ui`（仓库根） | `@shengdingbot/dsh-remote-web-ui-standalone` | `remote-web-ui-standalone` | 本仓 `packages/dsh-remote-web-ui/lib/*` |
+| `D:\...\dsh-remote-web-ui\packages\dsh-remote-web-ui` | `@shengdingbot/dsh-remote-web-ui` | `remote-web-ui` | 同一份 `lib/*` |
 
 根能装的原因是三处配套（改根时别拆散）：
 
@@ -153,7 +157,7 @@ installProblemNotBundle: 这个包没有声明组合包，无法作为插件安�
 3. 根的 `main` / `exports` 转发到 `packages/dsh-remote-web-ui/lib/index.js` 与 `lib/client.js`。
 
 第 3 条是关键：根**自己**没有插件代码，靠转发指向子包产物，所以从根安装时加载的确实是
-这个检出里的代码，而不是 npm 上已发布的 `@linxin666/dsh-remote-web-ui`。根条目与子包条目的
+这个检出里的代码，而不是 npm 上已发布的 `@shengdingbot/dsh-remote-web-ui`。根条目与子包条目的
 row id 刻意不同，避免同一 profile 里两个组合包抢同一个 patch 行。
 
 两条路径**只装一条**：同一 profile 同时装根条目和子包条目，等于同一个插件挂两份
@@ -163,40 +167,39 @@ row id 刻意不同，避免同一 profile 里两个组合包抢同一个 patch 
 > （`@deepseek-ai/schemastery`、`cloudflared`、`zod` 等不内联），所以子包必须有自己的
 > `node_modules`。克隆后先跑一次 `pnpm install`，否则激活时报
 > `ERR_MODULE_NOT_FOUND: Cannot find package '@deepseek-ai/schemastery'`。
-> 只用得到运行时依赖时，`pnpm install --prod --filter "@linxin666/dsh-remote-web-ui"` 就够，
+> 只用得到运行时依赖时，`pnpm install --prod --filter "@shengdingbot/dsh-remote-web-ui"` 就够，
 > 不必拉整套 `@deepseek-ai/*` 预发布 devDependencies。
 
-### 仓库自带预构建产物（克隆即可加载）
+### 仓库自带构建产物（克隆即可加载）
 
 包的 `main` 指向 `lib/index.js`，而 `lib/` 原本是构建产物、被 `.gitignore` 排除。
 所以只带源码的分支克隆下来**装得上但用不起来**：`dsh plugin add link:<path>` 只是建软链，
 不会替你跑 `prepare` / `build`，`lib/` 不存在 → 主入口解析失败，插件面板里什么都没有。
 
-本仓直接附带一份**已在设备上验证通过**的 `lib/`：
+本仓把 `lib/` 纳入版本控制（`.gitignore` 为它开例外）。随仓这份由**本仓源码 `pnpm build`**
+产出，已含下文的中继编码修复：
 
 | 文件 | 大小 | sha256 |
 |---|---|---|
-| `lib/index.js` | 638,765 B | `7f2466cf…f148` |
-| `lib/client.js` | 286,355 B | `2428d160…c0ed` |
+| `lib/index.js` | 317,470 B | `dc368db3…a7fb` |
+| `lib/client.js` | 285,873 B | `f8457bb6…e8d` |
 
-它与你手机扫码实际跑通的那一份逐字节相同（`cmp` 无差异），且已含下文的编码修复。
-克隆后可直接：
+克隆后可直接装：
 
 ```bash
 dsh plugin --profile <profile> add link:$PWD/packages/dsh-remote-web-ui
 ```
 
-自检三条，都应命中：
+自检两条，源码修复在位时都应输出 `1`：
 
 ```bash
-grep -c 'LOCAL PATCH (encoding fix)' packages/dsh-remote-web-ui/lib/index.js        # 1
-grep -c 'accept-encoding"\] = "identity"' packages/dsh-remote-web-ui/lib/index.js   # 1
-sha256sum packages/dsh-remote-web-ui/lib/index.js                                   # 7f2466cf…f148
+grep -cF 'if (name.toLowerCase() === "accept-encoding") continue;' packages/dsh-remote-web-ui/lib/index.js
+grep -cF 'headers["accept-encoding"] = "identity";'               packages/dsh-remote-web-ui/lib/index.js
 ```
 
-> 附带说明：本仓 `lib/` 来自 npm 0.4.13 的发布构建 + 就地修复，与你本地 `pnpm build`
-> 出来的产物在体积上不同（本地构建约 317 KB），因为打包配置不同。**以随仓附带、
-> 已在真机上验证的这份为准**；自己重建会用新产物覆盖它，记得连同改动一起提交。
+> **改了源码就得重建**：`link:` 安装只建软链、不跑构建，`lib/` 不会自己更新。
+> 改完 `src/` 跑一次 `pnpm build`，再把新的 `lib/` 连同源码一起提交，否则 profile 里跑的
+> 还是旧产物。上面的 sha256 只在源码未变时成立。
 
 ### 从源码构建
 
@@ -219,7 +222,7 @@ dsh plugin --profile <profile> add link:$(pwd)/packages/dsh-remote-web-ui
 或直接用 npm 上已发布的版本：
 
 ```bash
-dsh plugin --profile <profile> add @linxin666/dsh-remote-web-ui@0.4.13
+dsh plugin --profile <profile> add @shengdingbot/dsh-remote-web-ui@0.4.13
 ```
 
 ### 装 npm 预构建包时，补丁要单独打到 `lib/index.js`
@@ -234,7 +237,7 @@ bash scripts/fix-remote-web-ui-encoding.sh <profile>      # 指定 profile
 DRY_RUN=1 bash scripts/fix-remote-web-ui-encoding.sh      # 只校验，不写入
 ```
 
-作用于 `$DSH_HOME/profiles/<profile>/node_modules/@linxin666/dsh-remote-web-ui/lib/index.js`：
+作用于 `$DSH_HOME/profiles/<profile>/node_modules/@shengdingbot/dsh-remote-web-ui/lib/index.js`：
 
 - **幂等**：已含 `LOCAL PATCH (encoding fix)` 标记就直接退出，不会叠两次
 - **三锚点校验**：函数定义、循环内 `continue`、`headers.host = host` 各须出现且仅出现 1 次；
@@ -255,7 +258,7 @@ profile 的 `~/.dsh/profiles/<profile>/cordis.patch.yml` 里若写成别的 id�
 
 ```yaml
 - id: remote-web-ui
-  name: '@linxin666/dsh-remote-web-ui'
+  name: '@shengdingbot/dsh-remote-web-ui'
   config:
     tokenTtlMs: 91622400000
     idleExpireMs: 91622400000
@@ -282,9 +285,8 @@ netsh advfirewall firewall add rule name="remote-web-ui (auto)" dir=in action=al
 
 ### 已验证
 
-在 Node 22 / pnpm 11.7.0 下：`pnpm build` 成功产出 `lib/index.js`（约 317 KB）与
-`lib/client.js`（约 286 KB）；`pnpm test` 600 个用例通过（补上 `simple-icons` 之前，
-有 5 个测试文件因 `Cannot find package` 失败）。
+在 Node 22 / pnpm 11.7.0 下：`pnpm build` 成功产出 `lib/index.js`（317,470 B）与
+`lib/client.js`（285,873 B）；`pnpm test` **56 个测试文件、644 个用例通过，6 个跳过，0 失败**。
 
 ### 与 `dsh-remote-bridge` 并存的风险
 

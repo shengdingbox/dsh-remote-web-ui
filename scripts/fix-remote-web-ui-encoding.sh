@@ -2,7 +2,7 @@
 # ---------------------------------------------------------------------------
 # fix-remote-web-ui-encoding.sh
 #
-# 修复 @linxin666/dsh-remote-web-ui 经公网中继访问时「整页乱码」的问题。
+# 修复 @shengdingbot/dsh-remote-web-ui 经公网中继访问时「整页乱码」的问题。
 #
 # 病因：dsh-market.com 的中继 worker 会按客户端协商的算法再压一层，
 #       却透传 origin 原本的 Content-Encoding 头。于是 Safari 拿到
@@ -24,7 +24,7 @@ set -euo pipefail
 
 PROFILE="${1:-desktop}"
 DSH_HOME="${DSH_HOME:-$HOME/.dsh}"
-TARGET="$DSH_HOME/profiles/$PROFILE/node_modules/@linxin666/dsh-remote-web-ui/lib/index.js"
+TARGET="$DSH_HOME/profiles/$PROFILE/node_modules/@shengdingbot/dsh-remote-web-ui/lib/index.js"
 BACKUP="$TARGET.bak-encfix"
 MARKER="LOCAL PATCH (encoding fix)"
 ANCHOR_FN='function bridgeUpstreamHeaders(frameHeaders, host) {'

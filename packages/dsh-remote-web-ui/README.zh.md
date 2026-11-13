@@ -2,14 +2,14 @@
 
 [English](README.md) | 中文
 
-> **弃用声明**：`@linxin666/dsh-remote-web-ui` 已弃用，后续由 [@linxin666/dsh-remote-bridge](../dsh-remote-bridge/README.zh.md) 承接。本插件已从 `@linxin666/dsh-web-all` 聚合包中摘除（老 profile 行通过 tombstone 导出与 `retiredPlugins` 登记静默跳过为 no-op），并计划在下一版本中正式删除。过渡期内独立安装（`dsh plugin --profile <name> add @linxin666/dsh-remote-web-ui`）仍可正常使用。浏览器远程控制能力已由手机 App（@linxin666/dsh-remote-bridge）取代，本包不再提供远程访问功能。
+> **来源与维护**：本包是上游 `@linxin666/dsh-remote-web-ui`（原属 `dsh-web` 单体仓）的独立分支，发布名改为 `@shengdingbot/dsh-remote-web-ui`，由本仓自行维护。上游原包已于 v0.4.13 从聚合包 `@linxin666/dsh-web-all` 中摘除并停止维护，浏览器远程控制能力由手机 App 方案 `@linxin666/dsh-remote-bridge` 承接；本仓保留完整实现并继续维护，二者按 profile 共用同一中继身份，**不要同时启用**。
 >
 > - **已迁往 `@linxin666/dsh-remote-bridge` 的能力**：接入栈（中继身份登记、租约 claim/release 控制面、快速/命名双隧道连接器、Durable Object 会合点连接器、cloudflared 进程生命周期与孤儿进程清理、Cloudflare 命名隧道 ingress 端口同步、局域网转发器、宿主通配绑定探测与主机防火墙管理）。
 > - **随本插件一起下线的能力**：浏览器侧远程控制面（配对 cookie 门控、`/api/pair` 路由族、门控 `/remote` 代理通道以及手机浏览器竖屏触控适配层）。
 > - **并存已知风险**：若与 `@linxin666/dsh-remote-bridge` 在同一 profile 中并存，切勿同时开启两端的中继（两者按 profile 共用同一中继身份，两侧同时启用会竞争 Durable Object 会合点连接，且新桥以 `relay=false` 挂载时会主动撤销该身份的注册行并释放租约）。
 
 <p align="center">
-  <img src="https://img.shields.io/npm/v/@linxin666/dsh-remote-web-ui?style=flat-square" alt="Version">
+  <img src="https://img.shields.io/npm/v/@shengdingbot/dsh-remote-web-ui?style=flat-square" alt="Version">
   &nbsp;
   <img src="https://img.shields.io/badge/DSH-%3E%3D0.2.1--rc.3-4c6ef5?style=flat-square&amp;labelColor=454a54" alt="DSH">
   &nbsp;
@@ -63,7 +63,7 @@
 
 ```sh
 # 推荐：直接从 npm 安装
-dsh plugin --profile web add @linxin666/dsh-remote-web-ui@latest
+dsh plugin --profile web add @shengdingbot/dsh-remote-web-ui@latest
 
 # 或从仓库（开发循环）
 git clone https://github.com/zhu1090093659/dsh-web.git
@@ -157,9 +157,9 @@ cloudflared tunnel --url http://127.0.0.1:3080
 cd dsh-web
 export NPM_TOKEN='<token>'   # 仅当仍需私有 @deepseek-ai 认证时
 pnpm install
-pnpm --filter @linxin666/dsh-remote-web-ui run build
-pnpm --filter @linxin666/dsh-remote-web-ui test
-pnpm --filter @linxin666/dsh-remote-web-ui run typecheck
+pnpm --filter @shengdingbot/dsh-remote-web-ui run build
+pnpm --filter @shengdingbot/dsh-remote-web-ui test
+pnpm --filter @shengdingbot/dsh-remote-web-ui run typecheck
 ```
 
 对端 API 来自官方 NPM SDK：用到的每个 `@deepseek-ai/*` 包都声明在 devDependencies（0.2.1-rc.3 cohort）中，TypeScript/Vitest 直接从 node_modules 解析类型——不需要 DSH 源码 checkout。消费侧 `prepare` 构建（`tsdown.prepare.config.ts`）不做类型检查地转译，git 安装同样无需 harness checkout。

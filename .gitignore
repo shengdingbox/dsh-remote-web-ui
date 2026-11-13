@@ -4,6 +4,9 @@ node_modules/
 # 构建产物（例外：本包仓库自带预构建 lib，见 README「预构建产物」）
 packages/*/lib/
 !/packages/dsh-remote-web-ui/lib/
+# 随仓只放 js 产物；类型声明与 sourcemap 由本地构建生成，不入库
+packages/dsh-remote-web-ui/lib/types/
+packages/dsh-remote-web-ui/lib/**/*.map
 *.tsbuildinfo
 
 # 测试与覆盖率

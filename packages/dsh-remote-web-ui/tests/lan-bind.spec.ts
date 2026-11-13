@@ -216,7 +216,7 @@ describe('removeManagedBlock / lanBindState', () => {
       '    port: 19387',
       '- id: web-ui-remote-web-ui',
       '  config:',
-      "    plugin: '@linxin666/dsh-remote-web-ui'",
+      "    plugin: '@shengdingbot/dsh-remote-web-ui'",
       '    lanBind: true',
       '- id: llm-verifier',
       '  config:',

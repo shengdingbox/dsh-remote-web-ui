@@ -17,7 +17,7 @@
  * unreadable package must not make the block pin a literal that refuses to
  * boot.
  *
- * @module @linxin666/dsh-remote-web-ui/host-bind-capability
+ * @module @shengdingbot/dsh-remote-web-ui/host-bind-capability
  */
 
 import * as webserver from '@deepseek-ai/dsh-host-webserver'

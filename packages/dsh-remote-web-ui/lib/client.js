@@ -1,10 +1,10 @@
 window.__ModuleLoader__.load({
-	id: "@linxin666/dsh-remote-web-ui",
+	id: "@shengdingbot/dsh-remote-web-ui",
 	factory: (require) => {
 		var module = { exports: {} };
 		var exports = module.exports;
 		Object.defineProperty(exports, Symbol.toStringTag, { value: "Module" });
-		//#region \0rolldown/runtime.js
+		// \0rolldown/runtime.js
 		var __create = Object.create;
 		var __defProp$1 = Object.defineProperty;
 		var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -21,19 +21,18 @@ window.__ModuleLoader__.load({
 			}
 			return to;
 		};
-		var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(isNodeMode || !mod || !mod.__esModule ? __defProp$1(target, "default", {
+		var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(isNodeMode || !mod || !mod.__esModule || !__hasOwnProp$1.call(mod, "default") ? __defProp$1(target, "default", {
 			value: mod,
 			enumerable: true
 		}) : target, mod));
-		//#endregion
 		let react = require("react");
-		react = __toESM(react, 1);
+		react = __toESM(react);
 		let react_dom_client = require("react-dom/client");
 		let react_dom = require("react-dom");
 		let _deepseek_ai_dsh_client_ui_primitives = require("@deepseek-ai/dsh-client-ui-primitives");
 		let react_jsx_runtime = require("react/jsx-runtime");
 		let _deepseek_ai_dsh_client_store = require("@deepseek-ai/dsh-client-store");
-		//#region ../../node_modules/.pnpm/clsx@2.1.1/node_modules/clsx/dist/clsx.mjs
+		// ../../node_modules/.pnpm/clsx@2.1.1/node_modules/clsx/dist/clsx.mjs
 		function r(e) {
 			var t, f, n = "";
 			if ("string" == typeof e || "number" == typeof e) n += e;
@@ -47,8 +46,7 @@ window.__ModuleLoader__.load({
 			for (var e, t, f = 0, n = "", o = arguments.length; f < o; f++) (e = arguments[f]) && (t = r(e)) && (n && (n += " "), n += t);
 			return n;
 		}
-		//#endregion
-		//#region ../../node_modules/.pnpm/qrcode.react@4.2.0_react@18.3.1/node_modules/qrcode.react/lib/esm/index.js
+		// ../../node_modules/.pnpm/qrcode.react@4.2.0_react@18.3.1/node_modules/qrcode.react/lib/esm/index.js
 		var __defProp = Object.defineProperty;
 		var __getOwnPropSymbols = Object.getOwnPropertySymbols;
 		var __hasOwnProp = Object.prototype.hasOwnProperty;
@@ -834,8 +832,8 @@ window.__ModuleLoader__.load({
 				static makeAlphanumeric(text) {
 					if (!_QrSegment.isAlphanumeric(text)) throw new RangeError("String contains unencodable characters in alphanumeric mode");
 					let bb = [];
-					let i;
-					for (i = 0; i + 2 <= text.length; i += 2) {
+					let i = 0;
+					for (; i + 2 <= text.length; i += 2) {
 						let temp = _QrSegment.ALPHANUMERIC_CHARSET.indexOf(text.charAt(i)) * 45;
 						temp += _QrSegment.ALPHANUMERIC_CHARSET.indexOf(text.charAt(i + 1));
 						appendBits(temp, 11, bb);
@@ -1228,8 +1226,7 @@ window.__ModuleLoader__.load({
 			}), image);
 		});
 		QRCodeSVG.displayName = "QRCodeSVG";
-		//#endregion
-		//#region src/client/pair-api.ts
+		// src/client/pair-api.ts
 		/** Read the host-authoritative desktop pairing policy. */
 		async function readPairGatePolicy() {
 			const response = await fetch("api/pair/status");
@@ -1486,8 +1483,7 @@ window.__ModuleLoader__.load({
 				return false;
 			}
 		}
-		//#endregion
-		//#region src/client/device-name.ts
+		// src/client/device-name.ts
 		/** Derive a short, non-sensitive device label from a browser User-Agent. */
 		function deviceNameFromUserAgent(userAgent) {
 			if (userAgent === void 0 || userAgent.trim() === "") return void 0;
@@ -1527,13 +1523,12 @@ window.__ModuleLoader__.load({
 			}
 			return [...groups.values()].filter((group) => group.length > 1);
 		}
-		//#endregion
-		//#region \0dsh-css:packages/dsh-remote-web-ui/src/client/remote.module.css.mjs
+		// \0dsh-css:packages/dsh-remote-web-ui/src/client/remote.module.css.mjs
 		const css$1 = ".fThDlq_overlay{z-index:1000;justify-content:center;align-items:center;display:flex;position:fixed;inset:0}.fThDlq_mask{background:var(--dsw-alias-bg-mask-1);backdrop-filter:var(--dsw-mask-blur);position:absolute;inset:0}.fThDlq_trigger{width:36px;height:36px;color:var(--dsw-alias-label-secondary);cursor:pointer;background:0 0;border:none;border-radius:50%;flex:none;justify-content:center;align-items:center;padding:0;transition:background-color .12s,color .12s,box-shadow .12s;display:inline-flex;position:relative}.fThDlq_trigger[data-wide=wide]{border-radius:999px;flex:auto;justify-content:flex-start;gap:8px;width:auto;min-width:0;padding:0 10px}.fThDlq_trigger:hover:not(:disabled){background:var(--dsw-alias-interactive-bg-hover);color:var(--dsw-alias-label-primary)}.fThDlq_trigger:active:not(:disabled){background:var(--dsw-alias-interactive-bg-active)}.fThDlq_trigger:focus-visible{box-shadow:0 0 0 2px var(--dsw-alias-bg-layer-2), 0 0 0 4px var(--dsw-alias-brand-primary);outline:none}.fThDlq_trigger:disabled{opacity:.5;cursor:default}.fThDlq_panel{z-index:1;box-sizing:border-box;background:var(--dsw-alias-bg-layer-2);width:560px;max-width:calc(100vw - 48px);max-height:calc(100vh - 48px);box-shadow:var(--dsw-shadow-lv3);color:var(--dsw-alias-label-primary);border-radius:24px;flex-direction:column;gap:14px;padding:24px;font-size:14px;line-height:22px;display:flex;position:relative;overflow:auto}.fThDlq_header{align-items:flex-start;gap:12px;display:flex}.fThDlq_heading{flex:1;min-width:0}.fThDlq_title{margin:0;font-size:18px;font-weight:600;line-height:26px}.fThDlq_subtitle{color:var(--dsw-alias-label-secondary);margin:4px 0 0;font-size:13px}.fThDlq_close{width:28px;height:28px;color:var(--dsw-alias-label-secondary);cursor:pointer;background:0 0;border:none;border-radius:50%;flex:none;justify-content:center;align-items:center;padding:0;transition:background-color .12s,color .12s,box-shadow .12s;display:inline-flex}.fThDlq_close:hover:not(:disabled){background:var(--dsw-alias-interactive-bg-hover)}.fThDlq_close:active:not(:disabled){background:var(--dsw-alias-interactive-bg-active)}.fThDlq_close:focus-visible{box-shadow:0 0 0 2px var(--dsw-alias-bg-layer-2), 0 0 0 4px var(--dsw-alias-brand-primary);outline:none}.fThDlq_close:disabled{opacity:.5;cursor:default}.fThDlq_card{border:1px solid var(--dsw-alias-border-l2);background:var(--dsw-alias-bg-layer-1);border-radius:16px;flex-direction:column;align-items:center;gap:12px;padding:16px;display:flex}.fThDlq_cardHeader{justify-content:space-between;align-items:center;gap:12px;width:100%;display:flex}.fThDlq_cardTitle{font-weight:500}.fThDlq_badge{white-space:nowrap;border-radius:999px;flex:none;align-items:center;gap:6px;min-width:0;padding:2px 10px;font-size:12px;line-height:18px;display:inline-flex}.fThDlq_badge:before{content:\"\";background:currentColor;border-radius:50%;width:8px;height:8px}.fThDlq_badge-waiting{color:var(--dsw-alias-label-secondary);background:var(--dsw-alias-interactive-bg-hover)}.fThDlq_badge-connected{color:var(--dsw-alias-state-success-primary);background:var(--dsw-alias-interactive-bg-hover)}.fThDlq_badge-disconnected{color:var(--dsw-alias-state-warn-primary);background:var(--dsw-alias-interactive-bg-hover)}.fThDlq_badge-stopped{color:var(--dsw-alias-state-error-primary);background:var(--dsw-alias-interactive-bg-hover)}.fThDlq_badgePublic{color:var(--dsw-alias-brand-primary);background:var(--dsw-alias-interactive-bg-hover)}.fThDlq_badges{flex:none;align-items:center;gap:6px;display:inline-flex}.fThDlq_qrWrap{background:var(--dsw-alias-bg-base);border-radius:12px;justify-content:center;align-items:center;padding:12px;display:flex}.fThDlq_qr{display:block}.fThDlq_expired{color:var(--dsw-alias-state-error-primary);margin:0;font-size:13px}.fThDlq_expiry{color:var(--dsw-alias-label-secondary);margin:0;font-size:12px}.fThDlq_hint{color:var(--dsw-alias-label-secondary);margin:0;font-size:13px}.fThDlq_link{text-overflow:ellipsis;white-space:nowrap;color:var(--dsw-alias-label-caption);font-family:var(--dsw-font-mono,ui-monospace, monospace);margin:0;font-size:12px;display:block;overflow:hidden}.fThDlq_pairLinks{flex-direction:column;gap:8px;display:flex}.fThDlq_pairLinkRow{border:1px solid var(--dsw-alias-border-l2);background:var(--dsw-alias-bg-layer-1);border-radius:10px;align-items:center;gap:10px;min-width:0;padding:10px 12px;display:flex}.fThDlq_pairLinkText{flex:1;min-width:0}.fThDlq_pairLinkLabel{color:var(--dsw-alias-label-secondary);margin-bottom:3px;font-size:12px;display:block}.fThDlq_copyLink{border:1px solid var(--dsw-alias-border-l2);background:var(--dsw-alias-button-elevated-fill);min-height:30px;color:var(--dsw-alias-label-primary);cursor:pointer;border-radius:8px;flex:none;align-items:center;gap:5px;padding:0 10px;display:inline-flex}.fThDlq_oneTimeHint{color:var(--dsw-alias-label-caption);margin:0;font-size:12px}.fThDlq_stoppedHint{color:var(--dsw-alias-state-error-primary);margin:0;font-size:13px}.fThDlq_tunnelNote{color:var(--dsw-alias-label-secondary);margin:0;font-size:13px}.fThDlq_tunnelFailed{color:var(--dsw-alias-state-error-primary);margin:0;font-size:13px}.fThDlq_actions{gap:8px;display:flex}.fThDlq_action{border:1px solid var(--dsw-alias-border-l2);background:var(--dsw-alias-button-elevated-fill);height:34px;color:var(--dsw-alias-label-primary);cursor:pointer;white-space:nowrap;border-radius:10px;justify-content:center;align-items:center;gap:6px;padding:0 14px;font-size:13px;transition:background-color .12s,border-color .12s,box-shadow .12s;display:inline-flex}.fThDlq_action:hover:not(:disabled){background:var(--dsw-alias-button-floating-hover)}.fThDlq_action:active:not(:disabled){background:var(--dsw-alias-interactive-bg-active)}.fThDlq_action:focus-visible{box-shadow:0 0 0 2px var(--dsw-alias-bg-layer-2), 0 0 0 4px var(--dsw-alias-brand-primary);outline:none}.fThDlq_action:disabled{opacity:.5;cursor:default}.fThDlq_banner{border:1px solid var(--dsw-alias-border-l2);background:var(--dsw-alias-bg-layer-1);border-radius:16px;padding:16px}.fThDlq_bannerTitle{color:var(--dsw-alias-state-warn-primary);margin:0;font-weight:500}.fThDlq_bannerHint{color:var(--dsw-alias-label-secondary);margin:6px 0 0;font-size:13px}.fThDlq_fencePage{z-index:2000;box-sizing:border-box;background:var(--dsw-alias-bg-base);text-align:center;flex-direction:column;justify-content:center;align-items:center;padding:40px 24px;display:flex;position:fixed;inset:0;overflow:auto}.fThDlq_fenceCard{box-sizing:border-box;border:1px solid var(--dsw-alias-border-l2);background:var(--dsw-alias-bg-layer-1);width:min(520px,100%);box-shadow:var(--dsw-shadow-lv3);text-align:center;border-radius:20px;margin-inline:auto;padding:36px 40px}.fThDlq_fenceMark{background:var(--dsw-alias-state-error-secondary);width:44px;height:44px;color:var(--dsw-alias-state-error-primary);border-radius:50%;place-items:center;margin-inline:auto;font-size:24px;line-height:1;display:grid}.fThDlq_fenceEyebrow{color:var(--dsw-alias-state-error-primary);margin:22px 0 8px;font-size:13px;font-weight:600}.fThDlq_fenceTitle{color:var(--dsw-alias-label-primary);margin:0;font-size:24px;line-height:1.35}.fThDlq_fenceDetail{color:var(--dsw-alias-label-secondary);margin:12px 0 0;font-size:14px;line-height:1.65}.fThDlq_fenceSteps{background:var(--dsw-alias-bg-layer-2);color:var(--dsw-alias-label-primary);text-align:left;border-radius:12px;margin:24px auto 0;padding:20px 20px 20px 42px;font-size:14px;line-height:1.65}.fThDlq_fenceSteps li+li{margin-top:8px}.fThDlq_fenceForm{width:100%;margin-top:20px}.fThDlq_fenceInputRow{gap:8px;width:100%;display:flex}.fThDlq_fenceInput{border:1px solid var(--dsw-alias-border-l2);background:var(--dsw-alias-bg-layer-2);min-width:0;color:var(--dsw-alias-label-primary);font:inherit;border-radius:10px;flex:1;padding:10px 14px;font-size:13px;transition:border-color .12s,box-shadow .12s}.fThDlq_fenceInput:focus{border-color:var(--dsw-alias-brand-primary);outline:none;box-shadow:0 0 0 2px #0066ff26}.fThDlq_fencePairButton{border:1px solid var(--dsw-alias-button-primary-fill);background:var(--dsw-alias-button-primary-fill);color:var(--dsw-alias-label-primary-foreground);font:inherit;cursor:pointer;border-radius:10px;flex-shrink:0;padding:10px 18px;font-size:13px;font-weight:500;transition:filter .12s,opacity .12s}.fThDlq_fencePairButton:hover:not(:disabled){background:var(--dsw-alias-button-primary-hover,var(--dsw-alias-button-primary-fill));border-color:var(--dsw-alias-button-primary-hover,var(--dsw-alias-button-primary-fill))}.fThDlq_fencePairButton:disabled{opacity:.55;cursor:not-allowed}.fThDlq_fencePairButton:focus-visible{outline:2px solid var(--dsw-alias-brand-primary);outline-offset:2px}.fThDlq_fenceError{color:var(--dsw-alias-state-error-primary);text-align:left;margin:10px 0 0;font-size:13px;line-height:1.4}.fThDlq_fenceRetry{border:1px solid var(--dsw-alias-border-l2);width:100%;color:var(--dsw-alias-label-secondary);font:inherit;cursor:pointer;background:0 0;border-radius:10px;margin-top:12px;padding:10px 16px;font-weight:500;transition:background-color .12s,color .12s}.fThDlq_fenceRetry:hover{background:var(--dsw-alias-interactive-bg-hover);color:var(--dsw-alias-label-primary)}.fThDlq_fenceRetry:focus-visible{outline:2px solid var(--dsw-alias-brand-primary);outline-offset:3px}.fThDlq_fenceFootnote{color:var(--dsw-alias-label-tertiary);margin:14px 0 0;font-size:12px;line-height:1.55}.fThDlq_addressHint{color:var(--dsw-alias-label-tertiary);margin:6px 0 0;font-size:12px}.fThDlq_devices{border:1px solid var(--dsw-alias-border-l2);background:var(--dsw-alias-bg-layer-1);border-radius:16px;flex-direction:column;gap:8px;padding:12px 16px 14px;display:flex}.fThDlq_devicesTitle{margin:0;font-size:13px;font-weight:500;line-height:20px}.fThDlq_devicesEmpty{color:var(--dsw-alias-label-secondary);margin:0;font-size:13px}.fThDlq_deviceList{flex-direction:column;gap:8px;margin:0;padding:0;list-style:none;display:flex}.fThDlq_deviceRow{justify-content:space-between;align-items:flex-start;gap:12px;display:flex}.fThDlq_deviceMeta{flex-direction:column;gap:2px;min-width:0;display:flex}.fThDlq_deviceName{text-overflow:ellipsis;white-space:nowrap;font-size:13px;font-weight:500;overflow:hidden}.fThDlq_devicePresence{font-size:12px;line-height:18px}.fThDlq_deviceOnline{color:var(--dsw-alias-state-success-primary)}.fThDlq_deviceOffline{color:var(--dsw-alias-label-secondary)}.fThDlq_deviceSeen{color:var(--dsw-alias-label-tertiary);font-variant-numeric:tabular-nums;font-size:12px}.fThDlq_deviceRevoke{color:var(--dsw-alias-label-secondary);cursor:pointer;background:0 0;border:none;border-radius:8px;flex:none;padding:6px 10px;font-size:12px;transition:background-color .12s,color .12s}.fThDlq_deviceRevoke:hover:not(:disabled){background:var(--dsw-alias-interactive-bg-hover);color:var(--dsw-alias-label-primary)}.fThDlq_deviceRevoke:focus-visible{box-shadow:0 0 0 2px var(--dsw-alias-bg-layer-2), 0 0 0 4px var(--dsw-alias-brand-primary);outline:none}.fThDlq_deviceEntry{flex-direction:column;gap:6px;display:flex}.fThDlq_deviceActions{flex:none;align-items:center;gap:2px;display:flex}.fThDlq_deviceRename,.fThDlq_deviceMerge{color:var(--dsw-alias-label-secondary);cursor:pointer;background:0 0;border:none;border-radius:8px;flex:none;padding:6px 10px;font-size:12px;transition:background-color .12s,color .12s}.fThDlq_deviceRename:hover:not(:disabled),.fThDlq_deviceMerge:hover:not(:disabled){background:var(--dsw-alias-interactive-bg-hover);color:var(--dsw-alias-label-primary)}.fThDlq_deviceRename:focus-visible,.fThDlq_deviceMerge:focus-visible{box-shadow:0 0 0 2px var(--dsw-alias-bg-layer-2), 0 0 0 4px var(--dsw-alias-brand-primary);outline:none}.fThDlq_deviceRename:disabled,.fThDlq_deviceMerge:disabled{opacity:.6;cursor:default}.fThDlq_deviceNameForm{align-items:center;gap:6px;min-width:0;display:flex}.fThDlq_deviceNameInput{border:1px solid var(--dsw-alias-border-l2);background:var(--dsw-alias-bg-layer-2);min-width:0;color:var(--dsw-alias-label-primary);font:inherit;border-radius:8px;flex:1;padding:5px 8px;font-size:13px}.fThDlq_deviceNameInput:focus-visible{box-shadow:0 0 0 2px var(--dsw-alias-bg-layer-2), 0 0 0 4px var(--dsw-alias-brand-primary);outline:none}.fThDlq_deviceDuplicate{background:var(--dsw-alias-interactive-bg-hover);border-radius:8px;justify-content:space-between;align-items:center;gap:8px;padding:6px 8px;display:flex}.fThDlq_deviceDuplicateText{min-width:0;color:var(--dsw-alias-label-secondary);font-size:12px;line-height:1.45}.fThDlq_deviceError{color:var(--dsw-alias-state-error-primary);font-size:12px}@media (prefers-reduced-motion:reduce){.fThDlq_trigger,.fThDlq_close,.fThDlq_action,.fThDlq_deviceRevoke,.fThDlq_deviceRename,.fThDlq_deviceMerge{transition:none}}.fThDlq_entryRow{flex:none;align-items:center;gap:6px;min-width:0;display:flex}.fThDlq_entryRow[data-rail=rail]{flex-direction:column-reverse;gap:4px}[data-dsh-frame]:not([data-sidebar-collapsed]) [class*=footArea]{flex-flow:wrap;align-items:center}[data-dsh-frame]:not([data-sidebar-collapsed]) [class*=footArea]>:not([class*=settingsArea]):not([class*=footerActions]){flex:100%;min-width:0}[data-dsh-frame]:not([data-sidebar-collapsed]) [class*=footArea]>[class*=footerActions]{display:contents}[data-dsh-frame]:not([data-sidebar-collapsed]) [class*=footerActions]>[data-slot=\"sidebar.footer.action\"]>:not([data-dsh-part=entry]):not([class*=entryRow]){flex:100%;order:1;min-width:0}[data-dsh-frame]:not([data-sidebar-collapsed]) [class*=footerActions]>[data-slot=\"sidebar.footer.action\"]>[data-dsh-part=entry],[data-dsh-frame]:not([data-sidebar-collapsed]) [class*=footerActions]>[data-slot=\"sidebar.footer.action\"]>[class*=entryRow]{flex:none;order:4;min-width:0}[data-dsh-frame]:not([data-sidebar-collapsed]) [class*=settingsArea]{flex:auto;order:3;width:auto;min-width:0}[data-dsh-frame][data-sidebar-collapsed] [class*=footerActions]:has([data-rail=rail]){flex-direction:column;align-items:center;gap:4px}";
-		const tagId$1 = "@linxin666/dsh-remote-web-ui/packages/dsh-remote-web-ui/src/client/remote.module.css";
+		const tagId$1 = "@shengdingbot/dsh-remote-web-ui/packages/dsh-remote-web-ui/src/client/remote.module.css";
 		if (typeof document !== "undefined" && document.querySelector("style[data-plugin-css=" + JSON.stringify(tagId$1) + "]") === null) {
 			const tag = document.createElement("style");
-			tag.dataset.plugin = "@linxin666/dsh-remote-web-ui";
+			tag.dataset.plugin = "@shengdingbot/dsh-remote-web-ui";
 			tag.dataset.pluginCss = tagId$1;
 			tag.textContent = css$1;
 			document.head.appendChild(tag);
@@ -1616,8 +1611,7 @@ window.__ModuleLoader__.load({
 			"tunnelFailed": "fThDlq_tunnelFailed",
 			"tunnelNote": "fThDlq_tunnelNote"
 		};
-		//#endregion
-		//#region src/client/RemotePanel.tsx
+		// src/client/RemotePanel.tsx
 		/**
 		* The mobile remote-control panel body: status card (state text + badge),
 		* the QR code, the open-on-phone hint with the link text, and the two
@@ -2043,8 +2037,7 @@ window.__ModuleLoader__.load({
 				] })]
 			});
 		}
-		//#endregion
-		//#region src/client/PhoneIcon.tsx
+		// src/client/PhoneIcon.tsx
 		/**
 		* Render the phone icon.
 		* @param props - size and optional class.
@@ -2066,8 +2059,7 @@ window.__ModuleLoader__.load({
 				})
 			});
 		}
-		//#endregion
-		//#region src/client/RemoteEntry.tsx
+		// src/client/RemoteEntry.tsx
 		/**
 		* The sidebar remote-control seat: the phone-icon trigger beside the
 		* settings button, and the pairing panel modal. Owns the panel behavior —
@@ -2308,8 +2300,7 @@ window.__ModuleLoader__.load({
 				children: /* @__PURE__ */ (0, react_jsx_runtime.jsx)(PhoneIcon, { size: wide ? 16 : 18 })
 			});
 		}
-		//#endregion
-		//#region src/client/FooterRemoteEntry.tsx
+		// src/client/FooterRemoteEntry.tsx
 		/**
 		* Render the remote-control trigger + pairing panel from the footer seat.
 		* @param props - composed slot props (footer seat subset).
@@ -2321,8 +2312,7 @@ window.__ModuleLoader__.load({
 				t: props.t
 			});
 		}
-		//#endregion
-		//#region src/client/PairFailedNotice.tsx
+		// src/client/PairFailedNotice.tsx
 		/**
 		* One-time failed-pairing notice: a fixed toast rendered on the phone after
 		* a QR accept failed (invalid/used token or a network error). Mounted by
@@ -2357,13 +2347,12 @@ window.__ModuleLoader__.load({
 				})]
 			});
 		}
-		//#endregion
-		//#region \0dsh-css:packages/dsh-remote-web-ui/src/client/settings-card.module.css.mjs
+		// \0dsh-css:packages/dsh-remote-web-ui/src/client/settings-card.module.css.mjs
 		const css = ".Kwoi6G_card{--settings-card-radius:12px;--settings-card-header-pad:16px;--settings-card-header-gap:13px;--settings-card-title-size:15px;--settings-card-description-size:13px;--settings-card-body-inset:16px;--settings-card-motion:.18s;border:1px solid var(--dsw-alias-border-l2);background:var(--dsw-alias-bg-layer-3);border-radius:var(--settings-card-radius);list-style:none;transition:border-color .16s,background .16s}.Kwoi6G_card:hover{border-color:var(--dsw-alias-label-dimmed)}.Kwoi6G_cardOpen{background:var(--dsw-alias-bg-layer-2);border-color:var(--dsw-alias-label-dimmed)}.Kwoi6G_cardNested{--settings-card-radius:10px;--settings-card-header-pad:10px 12px;--settings-card-header-gap:10px;--settings-card-title-size:13px;--settings-card-description-size:12px;--settings-card-body-inset:12px}.Kwoi6G_cardNested .Kwoi6G_description{white-space:nowrap;text-overflow:ellipsis;overflow:hidden}.Kwoi6G_header{appearance:none;box-sizing:border-box;width:100%;font:inherit;color:inherit;text-align:left;cursor:pointer;border-radius:var(--settings-card-radius);align-items:center;gap:var(--settings-card-header-gap);padding:var(--settings-card-header-pad);background:0 0;border:0;display:flex}.Kwoi6G_header:focus-visible{outline:2px solid var(--dsw-alias-brand-primary);outline-offset:-2px}.Kwoi6G_headerStatic{box-sizing:border-box;border-radius:var(--settings-card-radius);align-items:center;gap:var(--settings-card-header-gap);width:100%;padding:var(--settings-card-header-pad);display:flex}.Kwoi6G_headText{flex-direction:column;flex:1;gap:4px;min-width:0;display:flex}.Kwoi6G_mark{background:var(--dsw-alias-bg-module-platform);width:34px;height:34px;color:var(--dsw-alias-label-secondary);border-radius:10px;flex:none;place-items:center;transition:color .16s;display:grid}.Kwoi6G_header:hover .Kwoi6G_mark,.Kwoi6G_cardOpen .Kwoi6G_mark{color:var(--dsw-alias-label-primary)}.Kwoi6G_name{color:var(--dsw-alias-label-primary);font-size:var(--settings-card-title-size);font-weight:600;line-height:1.4}.Kwoi6G_description{color:var(--dsw-alias-label-secondary);font-size:12px;line-height:18px}.Kwoi6G_headerAction{flex:none;align-items:center;display:inline-flex}.Kwoi6G_chevron{color:var(--dsw-alias-label-tertiary);flex:none;width:16px;height:16px;transition:transform .16s,color .16s}.Kwoi6G_header:hover .Kwoi6G_chevron{color:var(--dsw-alias-label-secondary)}.Kwoi6G_chevronOpen{transform:rotate(180deg)}.Kwoi6G_disclosure{opacity:0;transition:grid-template-rows var(--settings-card-motion) ease, opacity var(--settings-card-motion) ease;grid-template-rows:0fr;display:grid}.Kwoi6G_disclosure[data-state=collapsed],.Kwoi6G_disclosure[data-state=entering],.Kwoi6G_disclosure[data-state=closing]{overflow:hidden}.Kwoi6G_disclosure[data-state=entering],.Kwoi6G_disclosure[data-state=shown]{opacity:1;grid-template-rows:1fr}.Kwoi6G_disclosure>.Kwoi6G_body{min-height:0}.Kwoi6G_body{border-top:1px solid var(--dsw-alias-border-l2);margin:0 var(--settings-card-body-inset);padding-bottom:8px;container:Kwoi6G_settings-card/inline-size}.Kwoi6G_readOnly{color:var(--dsw-alias-label-secondary);margin:12px 0 0;font-size:12px;line-height:1.5}.Kwoi6G_notExposed{color:var(--dsw-alias-state-warn-primary);margin:12px 0 0;font-size:12px;line-height:1.5}.Kwoi6G_failed{color:var(--dsw-alias-state-error-primary,#b42318);overflow-wrap:anywhere;margin:8px 0 4px;font-size:12px;line-height:18px}.Kwoi6G_field{grid-template-columns:minmax(0,1fr) fit-content(50%);grid-template-areas:\"Kwoi6G_head Kwoi6G_control\"\"Kwoi6G_hint Kwoi6G_control\";align-items:center;gap:4px 24px;padding:16px 0;display:grid}.Kwoi6G_field>.Kwoi6G_head{grid-area:Kwoi6G_head}.Kwoi6G_field>:is(.Kwoi6G_hint,.Kwoi6G_invalid){grid-area:Kwoi6G_hint}.Kwoi6G_field>:not(.Kwoi6G_head,.Kwoi6G_hint,.Kwoi6G_invalid){grid-area:Kwoi6G_control;justify-self:end;max-width:100%}.Kwoi6G_field+.Kwoi6G_field{border-top:1px solid var(--dsw-alias-border-l2)}.Kwoi6G_head{align-items:center;gap:8px;display:flex}.Kwoi6G_label{min-width:0;color:var(--dsw-alias-label-primary);flex:1;font-size:14px;font-weight:400;line-height:22px}.Kwoi6G_badges{align-items:center;gap:8px;display:inline-flex}.Kwoi6G_badge{white-space:nowrap;background:var(--dsw-alias-bg-module-platform);color:var(--dsw-alias-label-secondary);border-radius:999px;padding:1px 8px;font-size:11px;font-weight:500;line-height:17px}.Kwoi6G_reset{font:inherit;color:var(--dsw-alias-label-secondary);cursor:pointer;background:0 0;border:none;padding:0;font-size:12px;line-height:1.5}.Kwoi6G_reset:hover:not(:disabled){color:var(--dsw-alias-label-primary)}.Kwoi6G_reset:disabled{cursor:default}.Kwoi6G_reset:focus-visible{outline:2px solid var(--dsw-alias-brand-primary);outline-offset:2px}.Kwoi6G_segmentGroup{background:color-mix(in srgb, var(--dsw-alias-label-primary) 7%, transparent);box-shadow:inset 0 0 0 1px color-mix(in srgb, var(--dsw-alias-label-primary) 5%, transparent);border-radius:8px;flex-wrap:wrap;align-items:center;gap:2px;padding:2px;display:inline-flex;position:relative}.Kwoi6G_segment{appearance:none;color:var(--dsw-alias-label-secondary);font:inherit;white-space:nowrap;cursor:pointer;background:0 0;border:0;border-radius:7px;margin:0;padding:3px 12px;font-size:13px;font-weight:500;line-height:18px;transition:background-color .12s,color .12s}.Kwoi6G_segment:hover:not(:disabled):not([data-active]){color:var(--dsw-alias-label-primary)}.Kwoi6G_segmentGroup:not([data-pill])>.Kwoi6G_segment[data-active],.Kwoi6G_segmentGroup[data-pill]:before{background:var(--dsw-alias-bg-overlay,var(--dsw-alias-bg-layer-3));box-shadow:0 1px 2px #14141314}body[data-ds-dark-theme] .Kwoi6G_segmentGroup:not([data-pill])>.Kwoi6G_segment[data-active],body[data-ds-dark-theme] .Kwoi6G_segmentGroup[data-pill]:before{box-shadow:none;background:#ffffff24}.Kwoi6G_segment[data-active]{color:var(--dsw-alias-label-primary)}.Kwoi6G_segmentGroup[data-pill]:before{content:\"\";width:var(--segment-pill-w,0px);height:var(--segment-pill-h,0px);transform:translate(var(--segment-pill-x,0px), var(--segment-pill-y,0px));pointer-events:none;border-radius:7px;transition:transform .24s cubic-bezier(.22,.61,.36,1),width .24s cubic-bezier(.22,.61,.36,1),height .24s cubic-bezier(.22,.61,.36,1);position:absolute;top:0;left:0}.Kwoi6G_segmentGroup>*{z-index:1;position:relative}.Kwoi6G_segment:focus-visible{outline:2px solid var(--dsw-alias-brand-primary);outline-offset:1px}.Kwoi6G_segment:disabled{cursor:not-allowed;opacity:.45}.Kwoi6G_segmentGroup[data-pill]:has(>.Kwoi6G_segment:disabled):before{opacity:.45}.Kwoi6G_input,.Kwoi6G_select{border:1px solid var(--dsw-alias-border-l2);background:var(--dsw-alias-bg-layer-3);height:34px;font:inherit;color:var(--dsw-alias-label-primary);border-radius:8px;padding:0 12px;font-size:13px;line-height:1.5}.Kwoi6G_input:focus-visible,.Kwoi6G_select:focus-visible{border-color:var(--dsw-alias-brand-primary);outline:none}.Kwoi6G_input:disabled,.Kwoi6G_select:disabled{color:var(--dsw-alias-label-tertiary);cursor:default}.Kwoi6G_inputInvalid{border:1px solid var(--dsw-alias-state-error-primary,#b42318);background:var(--dsw-alias-bg-layer-3);height:34px;font:inherit;color:var(--dsw-alias-label-primary);border-radius:8px;padding:0 12px;font-size:13px;line-height:1.5}.Kwoi6G_inputInvalid:focus-visible{outline:2px solid var(--dsw-alias-state-error-primary,#b42318);outline-offset:1px;border-color:var(--dsw-alias-state-error-primary,#b42318)}.Kwoi6G_field>:is(.Kwoi6G_input,.Kwoi6G_inputInvalid,.Kwoi6G_select,.Kwoi6G_selectWrap,.Kwoi6G_rangeAnchor){box-sizing:border-box;width:220px}.Kwoi6G_rangeAnchor>:is(.Kwoi6G_input,.Kwoi6G_inputInvalid){box-sizing:border-box;width:100%}@container Kwoi6G_settings-card (width<=440px){.Kwoi6G_field{grid-template-columns:minmax(0,1fr);grid-template-areas:\"Kwoi6G_head\"\"Kwoi6G_hint\"\"Kwoi6G_control\";row-gap:8px}.Kwoi6G_field>:not(.Kwoi6G_head,.Kwoi6G_hint,.Kwoi6G_invalid){justify-self:start}.Kwoi6G_field>:is(.Kwoi6G_input,.Kwoi6G_inputInvalid,.Kwoi6G_select,.Kwoi6G_selectWrap,.Kwoi6G_rangeAnchor){justify-self:stretch;width:auto}}.Kwoi6G_selectWrap{position:relative}.Kwoi6G_selectButton{appearance:none;text-align:left;cursor:pointer;justify-content:space-between;align-items:center;gap:8px;width:100%;display:flex}.Kwoi6G_selectLabel{text-overflow:ellipsis;white-space:nowrap;min-width:0;overflow:hidden}.Kwoi6G_selectChevron{color:var(--dsw-alias-label-tertiary);flex:none;transition:transform .16s}.Kwoi6G_selectChevronOpen{transform:rotate(180deg)}.Kwoi6G_selectPopup{z-index:40;border:1px solid var(--dsw-alias-border-l2);background:var(--dsw-alias-bg-layer-3);max-height:240px;box-shadow:0 8px 24px var(--dsw-alias-bg-mask-2);opacity:0;border-radius:8px;flex-direction:column;padding:4px;transition:opacity .1s,transform .1s;display:flex;position:absolute;top:calc(100% + 4px);left:0;right:0;overflow-y:auto;transform:translateY(-4px)}.Kwoi6G_selectPopupOpen{opacity:1;transform:none}.Kwoi6G_selectPopupClose{opacity:0;pointer-events:none;transform:translateY(-4px)}.Kwoi6G_rangeAnchor{display:inline-flex;position:relative}.Kwoi6G_rangeBubble{z-index:40;box-sizing:border-box;border:1px solid var(--dsw-alias-border-l2);background:var(--dsw-alias-bg-layer-3);width:220px;box-shadow:0 8px 24px var(--dsw-alias-bg-mask-2);opacity:0;visibility:hidden;border-radius:10px;padding:10px 12px 6px;transition:opacity .12s,transform .12s,visibility 0s linear .12s;position:absolute;right:0}.Kwoi6G_rangeBubble[data-side=above]{bottom:calc(100% + 6px);transform:translateY(4px)}.Kwoi6G_rangeBubble[data-side=below]{top:calc(100% + 6px);transform:translateY(-4px)}.Kwoi6G_rangeBubble[data-open]{opacity:1;visibility:visible;transition:opacity .12s,transform .12s,visibility;transform:none}.Kwoi6G_rangeSlider{appearance:none;cursor:pointer;background:0 0;width:100%;height:18px;margin:0;display:block}.Kwoi6G_rangeSlider::-webkit-slider-runnable-track{background:linear-gradient(to right, var(--dsw-alias-brand-primary) var(--range-fill,0%), color-mix(in srgb, var(--dsw-alias-label-primary) 12%, transparent) var(--range-fill,0%));border-radius:999px;height:4px}.Kwoi6G_rangeSlider::-moz-range-track{background:color-mix(in srgb, var(--dsw-alias-label-primary) 12%, transparent);border-radius:999px;height:4px}.Kwoi6G_rangeSlider::-moz-range-progress{background:var(--dsw-alias-brand-primary);border-radius:999px;height:4px}.Kwoi6G_rangeSlider::-webkit-slider-thumb{appearance:none;background:#fff;border:0;border-radius:50%;width:14px;height:14px;margin-top:-5px;transition:transform .12s;box-shadow:0 0 0 1px #0000001f,0 1px 3px #00000040}.Kwoi6G_rangeSlider::-moz-range-thumb{background:#fff;border:0;border-radius:50%;width:14px;height:14px;box-shadow:0 0 0 1px #0000001f,0 1px 3px #00000040}.Kwoi6G_rangeSlider:active::-webkit-slider-thumb{transform:scale(1.15)}.Kwoi6G_rangeSlider:focus-visible{outline:none}.Kwoi6G_rangeSlider:focus-visible::-webkit-slider-thumb{box-shadow:0 0 0 2px var(--dsw-alias-brand-primary)}.Kwoi6G_rangeSlider:disabled{cursor:not-allowed}.Kwoi6G_rangeEnds{color:var(--dsw-alias-label-secondary);font-variant-numeric:tabular-nums;justify-content:space-between;margin-top:2px;font-size:11px;line-height:16px;display:flex}.Kwoi6G_selectOption{color:var(--dsw-alias-label-primary);cursor:pointer;white-space:nowrap;text-overflow:ellipsis;border-radius:6px;flex-shrink:0;padding:6px 10px;font-size:13px;line-height:1.5;overflow:hidden}.Kwoi6G_selectOption:hover,.Kwoi6G_selectOptionActive{background:var(--dsw-alias-interactive-bg-hover)}.Kwoi6G_selectOptionSelected{color:var(--dsw-alias-brand-primary);background:color-mix(in srgb, var(--dsw-alias-brand-primary) 10%, transparent);font-weight:500}.Kwoi6G_invalid{color:var(--dsw-alias-state-error-primary,#b42318);margin:0;font-size:12px;line-height:18px}.Kwoi6G_hint{color:var(--dsw-alias-label-secondary);margin:0;font-size:12px;line-height:18px}.Kwoi6G_toggle{appearance:none;cursor:pointer;font:inherit;background:0 0;border:0;border-radius:999px;align-items:center;margin:0;padding:0;display:inline-flex}.Kwoi6G_toggleTrack{background:var(--dsw-alias-label-dimmed);border-radius:999px;flex:none;width:36px;height:20px;transition:background-color .18s;position:relative}.Kwoi6G_toggleThumb{--toggle-travel:16px;--toggle-overshoot:1px;background:var(--dsw-alias-bg-layer-3);border-radius:50%;width:16px;height:16px;transition:translate .18s;position:absolute;top:2px;left:2px;translate:0;box-shadow:0 1px 2px #1414132e}.Kwoi6G_toggle[aria-checked=true] .Kwoi6G_toggleTrack{background:var(--dsw-alias-button-primary-fill,var(--dsw-alias-label-primary))}.Kwoi6G_toggle[aria-checked=true] .Kwoi6G_toggleThumb{translate:var(--toggle-travel) 0;background:var(--dsw-alias-label-primary-foreground,var(--dsw-alias-bg-layer-3))}.Kwoi6G_toggle[data-moved][aria-checked=true] .Kwoi6G_toggleThumb{animation:.35s cubic-bezier(.34,1.45,.64,1) both Kwoi6G_toggle-on}.Kwoi6G_toggle[data-moved][aria-checked=false] .Kwoi6G_toggleThumb{animation:.35s cubic-bezier(.34,1.45,.64,1) both Kwoi6G_toggle-off}@keyframes Kwoi6G_toggle-on{0%{translate:0}55%{translate:calc(var(--toggle-travel) + var(--toggle-overshoot)) 0}80%,to{translate:var(--toggle-travel) 0}}@keyframes Kwoi6G_toggle-off{0%{translate:var(--toggle-travel) 0}55%{translate:calc(0px - var(--toggle-overshoot)) 0}80%,to{translate:0}}.Kwoi6G_toggle:focus-visible{outline:2px solid var(--dsw-alias-brand-primary);outline-offset:2px}.Kwoi6G_toggle:disabled{opacity:.45;cursor:not-allowed}@media (prefers-reduced-motion:reduce){.Kwoi6G_card,.Kwoi6G_header,.Kwoi6G_mark,.Kwoi6G_chevron,.Kwoi6G_chevronOpen,.Kwoi6G_rangeBubble,.Kwoi6G_selectChevron,.Kwoi6G_selectChevronOpen,.Kwoi6G_selectPopup,.Kwoi6G_toggleTrack,.Kwoi6G_toggleThumb{transition:none}.Kwoi6G_toggle[data-moved] .Kwoi6G_toggleThumb{animation:none}.Kwoi6G_disclosure{transition-property:opacity}}";
-		const tagId = "@linxin666/dsh-remote-web-ui/packages/dsh-remote-web-ui/src/client/settings-card.module.css";
+		const tagId = "@shengdingbot/dsh-remote-web-ui/packages/dsh-remote-web-ui/src/client/settings-card.module.css";
 		if (typeof document !== "undefined" && document.querySelector("style[data-plugin-css=" + JSON.stringify(tagId) + "]") === null) {
 			const tag = document.createElement("style");
-			tag.dataset.plugin = "@linxin666/dsh-remote-web-ui";
+			tag.dataset.plugin = "@shengdingbot/dsh-remote-web-ui";
 			tag.dataset.pluginCss = tagId;
 			tag.textContent = css;
 			document.head.appendChild(tag);
@@ -2422,8 +2411,7 @@ window.__ModuleLoader__.load({
 			"toggleThumb": "Kwoi6G_toggleThumb",
 			"toggleTrack": "Kwoi6G_toggleTrack"
 		};
-		//#endregion
-		//#region src/client/RangeBubble.tsx
+		// src/client/RangeBubble.tsx
 		/**
 		* Coarse adjustment for a bounded number: resting the pointer on the control
 		* (or moving focus into it) raises a small bubble holding a slider across the
@@ -2573,8 +2561,7 @@ window.__ModuleLoader__.load({
 				})]
 			});
 		}
-		//#endregion
-		//#region src/client/SegmentGroup.tsx
+		// src/client/SegmentGroup.tsx
 		/**
 		* The family's segmented control: a quiet track whose options share one
 		* highlight that slides to the pressed option, instead of each option fading
@@ -2659,8 +2646,7 @@ window.__ModuleLoader__.load({
 				children
 			});
 		}
-		//#endregion
-		//#region src/client/PluginSettingsCard.tsx
+		// src/client/PluginSettingsCard.tsx
 		/**
 		* Family-shared chrome for plugin settings cards: a disclosure header naming
 		* the plugin and what its settings govern, the controls inside, and the line
@@ -2812,9 +2798,10 @@ window.__ModuleLoader__.load({
 				className: cardClass,
 				children: [header, bodyRegion(notExposedNotice)]
 			});
+			const bodyVisible = props.headerOnly !== true;
 			return /* @__PURE__ */ (0, react_jsx_runtime.jsxs)("li", {
 				className: cardClass,
-				children: [header, props.headerOnly !== true ? bodyRegion(/* @__PURE__ */ (0, react_jsx_runtime.jsxs)(react_jsx_runtime.Fragment, { children: [
+				children: [header, bodyVisible ? bodyRegion(/* @__PURE__ */ (0, react_jsx_runtime.jsxs)(react_jsx_runtime.Fragment, { children: [
 					notExposedNotice,
 					!state.writable ? /* @__PURE__ */ (0, react_jsx_runtime.jsx)("p", {
 						className: settings_card_module_css_default.readOnly,
@@ -2989,9 +2976,11 @@ window.__ModuleLoader__.load({
 					case " ":
 						event.preventDefault();
 						if (!open) openPopup();
-						else if (!closing) if (event.key === "ArrowDown") setActiveIndex((index) => (index + 1) % count);
-						else if (event.key === "ArrowUp") setActiveIndex((index) => (index - 1 + count) % count);
-						else commit(activeIndex);
+						else if (!closing) {
+							if (event.key === "ArrowDown") setActiveIndex((index) => (index + 1) % count);
+							else if (event.key === "ArrowUp") setActiveIndex((index) => (index - 1 + count) % count);
+							else commit(activeIndex);
+						}
 						break;
 					case "Escape":
 						if (open) {
@@ -3000,9 +2989,7 @@ window.__ModuleLoader__.load({
 							close();
 						}
 						break;
-					case "Tab":
-						if (open) close();
-						break;
+					case "Tab": if (open) close();
 				}
 			};
 			(0, react.useEffect)(() => () => {
@@ -3576,8 +3563,7 @@ window.__ModuleLoader__.load({
 				for (const listener of this.listeners) listener();
 			}
 		};
-		//#endregion
-		//#region src/client/RemoteSettingsCard.tsx
+		// src/client/RemoteSettingsCard.tsx
 		/**
 		* The remote-control settings card: pairing security and device limits.
 		* Registers into the `web-ui.plugin.item` child slot the Web UI plugin group
@@ -4046,8 +4032,7 @@ window.__ModuleLoader__.load({
 				}, index))
 			});
 		}
-		//#endregion
-		//#region src/client/locales.ts
+		// src/client/locales.ts
 		/** `remote` namespace dictionaries: the remote-access surface copy. */
 		/** Simplified Chinese dictionary (the key-set source of truth). */
 		const zh = {
@@ -4341,8 +4326,7 @@ window.__ModuleLoader__.load({
 			"settings.saveFailed": "Not saved.",
 			"settings.invalidNumber": "Enter a number, or leave it empty for the default."
 		};
-		//#endregion
-		//#region src/client/deep-link.ts
+		// src/client/deep-link.ts
 		/** sessionStorage key for the failed-pair notice. */
 		const PAIR_FAILED_MARKER = "dsh-remote-pair-failed";
 		/** The browser implementation of {@link PageSurface}. */
@@ -4386,8 +4370,8 @@ window.__ModuleLoader__.load({
 			if (ok) page.reload();
 		}
 		/** Connection-plugin method prefix under the gated channel. */
-		const REMOTE_API_PREFIX$1 = `/remote/api`;
-		({ mux: `${REMOTE_API_PREFIX$1}/remote.mux` }).mux, `${REMOTE_API_PREFIX$1}`;
+		const REMOTE_API_PREFIX = `/remote/api`;
+		({ mux: `${REMOTE_API_PREFIX}/remote.mux` }).mux, `${REMOTE_API_PREFIX}`;
 		/**
 		* The cookieless device credential: the boot patch reads the device id from
 		* the /pair-app URL, keeps it in sessionStorage, and attaches it to every
@@ -4399,14 +4383,13 @@ window.__ModuleLoader__.load({
 		*/
 		const REMOTE_DEVICE_HEADER = "x-dsh-remote-device";
 		const REMOTE_DEVICE_QUERY = "device";
-		//#endregion
-		//#region src/remote-channel-rules.ts
+		// src/remote-channel-rules.ts
 		/**
 		* The remote-channel rewrite contract as pure data (issue #987): both the
 		* browser patch (client/remote-channel.ts) and the parse-time boot patch
 		* (remote-channel-boot.ts, inlined into index.html by the host) decide from
 		* these tables, so the two can never drift apart.
-		* @module @linxin666/dsh-remote-web-ui/remote-channel-rules
+		* @module @shengdingbot/dsh-remote-web-ui/remote-channel-rules
 		*/
 		/** The gated mirror prefix (must match src/remote-methods.ts). */
 		const REMOTE_PREFIX = "/remote";
@@ -4533,8 +4516,7 @@ window.__ModuleLoader__.load({
 		};
 		/** The window global the boot patch publishes its seat under. */
 		const REMOTE_CHANNEL_BOOT_GLOBAL = "__DSH_REMOTE_CHANNEL_BOOT__";
-		//#endregion
-		//#region src/client/remote-channel.ts
+		// src/client/remote-channel.ts
 		/**
 		* The remote desktop channel — browser half. On a non-loopback origin (LAN
 		* address or public tunnel) fenced host routes refuse the request, and
@@ -4825,8 +4807,7 @@ window.__ModuleLoader__.load({
 			if (!active && installed) return "retire";
 			return "none";
 		}
-		//#endregion
-		//#region src/client/FenceNotice.tsx
+		// src/client/FenceNotice.tsx
 		/**
 		* Unpaired-desktop notice: a full-page blocking surface rendered when the remote channel
 		* (see remote-channel.ts) refuses a call because this desktop browser has no
@@ -4953,8 +4934,7 @@ window.__ModuleLoader__.load({
 				})
 			});
 		}
-		//#endregion
-		//#region src/client/telemetry.ts
+		// src/client/telemetry.ts
 		/** localStorage key carrying the family-wide telemetry opt-out ('1' = off). */
 		const TELEMETRY_OPT_OUT_KEY = "dsh-web-ui-telemetry-opt-out";
 		const VISITOR_KEY = "dsh-web-ui-telemetry-visitor";
@@ -5046,8 +5026,7 @@ window.__ModuleLoader__.load({
 				}).catch(() => {});
 			} catch {}
 		}
-		//#endregion
-		//#region src/client/mobile-adapt.ts
+		// src/client/mobile-adapt.ts
 		/** Storage key for the manual desktop opt-out. */
 		const FORCE_DESKTOP_KEY = "dsh-remote-force-desktop";
 		/** Storage key for the dragged whale position. */
@@ -6000,8 +5979,7 @@ window.__ModuleLoader__.load({
 				}
 			};
 		}
-		//#endregion
-		//#region src/client/plugin-card-seat.ts
+		// src/client/plugin-card-seat.ts
 		/**
 		* Family plugin-card seat.
 		*
@@ -6128,8 +6106,7 @@ window.__ModuleLoader__.load({
 			} catch {}
 			reconcile();
 		}
-		//#endregion
-		//#region src/client/settings-entry-form.ts
+		// src/client/settings-entry-form.ts
 		/** The snapshot a form reports before the Host has answered with this entry. */
 		function pendingSnapshot() {
 			return {
@@ -6217,8 +6194,7 @@ window.__ModuleLoader__.load({
 				mutate: (ops, expectedRevision) => bound?.mutate(ops, expectedRevision) ?? Promise.resolve(false)
 			};
 		}
-		//#endregion
-		//#region src/client/index.ts
+		// src/client/index.ts
 		/**
 		* Remote control — browser half. Registers the `remote` dictionaries, the
 		* sidebar-foot entry (phone trigger + pairing panel + update trigger), and
@@ -6309,7 +6285,7 @@ window.__ModuleLoader__.load({
 			ctx.effect(() => () => {
 				window.__dshRemoteAdapt?.setEnabled?.(false);
 			}, "remote-web-ui: mobile-adapt");
-			reportDailyHeartbeat([{ name: "@linxin666/dsh-remote-web-ui" }]);
+			reportDailyHeartbeat([{ name: "@shengdingbot/dsh-remote-web-ui" }]);
 			ctx.effect(() => {
 				try {
 					return ctx.locale.register(NS, {
@@ -6377,7 +6353,7 @@ window.__ModuleLoader__.load({
 			});
 			const remoteSettings = new RemoteSettingsCardController(settingsForm);
 			installPluginCard(ctx, {
-				bundle: "@linxin666/dsh-remote-web-ui",
+				bundle: "@shengdingbot/dsh-remote-web-ui",
 				id: "remote-web-ui",
 				order: 90,
 				locale: NS,
@@ -6500,7 +6476,6 @@ window.__ModuleLoader__.load({
 				};
 			}, "remote-web-ui: failed-pair notice");
 		}
-		//#endregion
 		exports.apply = apply;
 		exports.bindSettingsForm = bindSettingsForm;
 		exports.inject = inject;
