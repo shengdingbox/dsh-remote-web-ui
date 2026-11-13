@@ -74,6 +74,12 @@ dsh plugin --profile web add link:$(pwd)/packages/dsh-remote-web-ui
 
 重启 profile（`dsh web`），然后打开侧栏底部的手机图标。插件的 `cordis.patch.yml` 插入单一插件行，同时挂载两个半区。
 
+> 也可以把**仓库根目录**填进插件管理器：根 `package.json` 已声明 `dsh.bundle`，其 patch 行
+> `remote-web-ui-standalone` 通过根的 `main`/`exports` 转发到本包的 `lib/*`，加载的仍是本检出
+> 的代码（选择器 id 与这里的 `remote-web-ui` 不同，两者**只装一条**）。若插件管理器报
+> 「这个包没有声明组合包 / declares no dsh.bundle」，就是填了一个没有 `dsh.bundle` 的目录——
+> 用上述两条路径之一，并先跑过 `pnpm install`。
+
 > `github:<org>/<repo>` 安装适用于包位于仓库根的独立仓库（`prepare` 脚本在安装期构建 `lib/`；pnpm ≥10 会阻止，需把打印的 key 复制进 profile 的 `pnpm-workspace.yaml` `allowBuilds` 后重试）。monorepo 子包使用上面的 `link:` 形式。
 
 ## 使用

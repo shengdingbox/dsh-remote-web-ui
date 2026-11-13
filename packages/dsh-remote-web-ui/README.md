@@ -74,6 +74,8 @@ dsh plugin --profile web add link:$(pwd)/packages/dsh-remote-web-ui
 
 Restart the profile (`dsh web`), then open the phone icon in the sidebar foot. The plugin's `cordis.patch.yml` inserts the single plugin row that mounts both halves.
 
+> Pointing the plugin manager at the **repository root** works too: the root `package.json` declares `dsh.bundle`, and its `remote-web-ui-standalone` patch row reaches this package's `lib/*` through the root `main`/`exports`, so the code that loads is the one in this checkout (its row id differs from `remote-web-ui` below — install **one** of the two, never both). If the plugin manager answers “declares no dsh.bundle”, the path you entered has no bundle declaration: use one of the two paths above and run `pnpm install` first.
+
 > `github:<org>/<repo>` installs work for a standalone repo whose package sits at the root (the `prepare` script builds `lib/` during install; pnpm ≥10 blocks that until you copy the printed key into the profile's `pnpm-workspace.yaml` `allowBuilds` and re-run). Monorepo subpackages use the `link:` form above.
 
 ## Use

@@ -126,6 +126,46 @@ headers['accept-encoding'] = 'identity'
 
 ## 使用
 
+### 从仓库根目录安装（根已声明组合包）
+
+DSH 插件管理器判定「能不能装」只看**你填的那个路径下 `package.json` 的 `dsh.bundle.patch`**：
+
+```
+installProblemNotBundle: 这个包没有声明组合包，无法作为插件安装：
+                        dsh-remote-web-ui-standalone declares no dsh.bundle
+```
+
+仓库根原本只是工作区容器（`private: true`，只有构建工具链），插件声明在
+`packages/dsh-remote-web-ui/package.json` 里。所以把**仓库根**填进插件管理器时，它读到的是
+根清单，找不到 `dsh.bundle` → 直接判 `not-bundle`，装了一堆依赖却激活不了。
+
+本仓已把根补成合法组合包，两条路径都能装：
+
+| 填给插件管理器的路径 | 得到的组合包名 | patch 行 id | 加载的代码 |
+|---|---|---|---|
+| `D:\...\dsh-remote-web-ui`（仓库根） | `dsh-remote-web-ui-standalone` | `remote-web-ui-standalone` | 本仓 `packages/dsh-remote-web-ui/lib/*` |
+| `D:\...\dsh-remote-web-ui\packages\dsh-remote-web-ui` | `@linxin666/dsh-remote-web-ui` | `remote-web-ui` | 同一份 `lib/*` |
+
+根能装的原因是三处配套（改根时别拆散）：
+
+1. 根 `package.json` 声明 `dsh.bundle.patch: ./cordis.patch.yml`；
+2. 根 `cordis.patch.yml` 插入 `remote-web-ui-standalone` → `dsh-remote-web-ui-standalone`；
+3. 根的 `main` / `exports` 转发到 `packages/dsh-remote-web-ui/lib/index.js` 与 `lib/client.js`。
+
+第 3 条是关键：根**自己**没有插件代码，靠转发指向子包产物，所以从根安装时加载的确实是
+这个检出里的代码，而不是 npm 上已发布的 `@linxin666/dsh-remote-web-ui`。根条目与子包条目的
+row id 刻意不同，避免同一 profile 里两个组合包抢同一个 patch 行。
+
+两条路径**只装一条**：同一 profile 同时装根条目和子包条目，等于同一个插件挂两份
+（重复的设置卡片、抢同一组路由与中继身份）。
+
+> 前置条件：`lib/` 随仓附带可直接用，但 `lib/index.js` 是外部依赖式产物
+> （`@deepseek-ai/schemastery`、`cloudflared`、`zod` 等不内联），所以子包必须有自己的
+> `node_modules`。克隆后先跑一次 `pnpm install`，否则激活时报
+> `ERR_MODULE_NOT_FOUND: Cannot find package '@deepseek-ai/schemastery'`。
+> 只用得到运行时依赖时，`pnpm install --prod --filter "@linxin666/dsh-remote-web-ui"` 就够，
+> 不必拉整套 `@deepseek-ai/*` 预发布 devDependencies。
+
 ### 仓库自带预构建产物（克隆即可加载）
 
 包的 `main` 指向 `lib/index.js`，而 `lib/` 原本是构建产物、被 `.gitignore` 排除。
